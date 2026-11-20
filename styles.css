@@ -1,0 +1,775 @@
+/* ==========================================================================
+   ARCHIVO: styles.css
+   DESCRIPCIÓN: Hoja de estilos principal del blog de crochet.
+   RELACIÓN: Define la paleta de colores en :root, la tipografía editorial,
+   las tarjetas responsivas y las transiciones de los tres modales.
+   ========================================================================== */
+
+/* ==================== VARIABLES GLOBALES (:root) ==================== */
+:root {
+  /* Paleta de colores rosa cálido */
+  --color-principal: #c76b8e;
+  --color-principal-oscuro: #9e4b6b;
+  --color-principal-suave: #f8e8ef;
+  --color-acento-crema: #fff6f9;
+  --color-fondo: #fdf9fb;
+  --color-tarjeta: #ffffff;
+  --color-texto: #362e32;
+  --color-texto-suave: #685c62;
+  --color-borde: #edd8e2;
+  --color-fondo-imagen: #ebd7e0;
+  --color-fondo-modal: rgba(42, 24, 33, 0.68);
+
+  /* Tipografías y dimensiones */
+  --fuente-titulos: "Lora", Georgia, serif;
+  --fuente-cuerpo: "Quicksand", "Segoe UI", sans-serif;
+  --radio-tarjeta: 16px;
+  --radio-boton: 24px;
+  --sombra-suave: 0 4px 16px rgba(158, 75, 107, 0.07);
+  --sombra-hover: 0 10px 26px rgba(158, 75, 107, 0.14);
+  --transicion-suave: 0.24s ease;
+}
+
+/* ==================== RESET Y ESTILOS BASE ==================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fuente-cuerpo);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.65;
+}
+
+body.modal-abierto {
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ==================== ACCESIBILIDAD DE TECLADO (:focus-visible) ==================== */
+a:focus-visible,
+button:focus-visible,
+tr[tabindex]:focus-visible {
+  outline: 3px solid var(--color-principal-oscuro);
+  outline-offset: 3px;
+}
+
+/* ==================== ENCABEZADO Y NAVEGACIÓN ==================== */
+.encabezado-principal {
+  background: linear-gradient(135deg, var(--color-principal) 0%, var(--color-principal-oscuro) 100%);
+  color: #ffffff;
+  padding: 42px 20px 32px;
+  text-align: center;
+}
+
+.encabezado-contenido {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.subtitulo-superior {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  background-color: rgba(255, 255, 255, 0.16);
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.encabezado-principal h1 {
+  font-family: var(--fuente-titulos);
+  font-size: 2.35rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+
+.encabezado-principal p {
+  opacity: 0.94;
+  margin-bottom: 24px;
+  font-size: 1.05rem;
+}
+
+.encabezado-principal nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.encabezado-principal nav a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: var(--radio-boton);
+  background-color: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 0.93rem;
+  font-weight: 600;
+  transition: background-color var(--transicion-suave), transform var(--transicion-suave);
+}
+
+.encabezado-principal nav a:hover {
+  background-color: #ffffff;
+  color: var(--color-principal-oscuro);
+  transform: translateY(-2px);
+}
+
+.encabezado-principal nav a:active {
+  transform: translateY(0);
+}
+
+/* ==================== ESTRUCTURA PRINCIPAL (GRID) ==================== */
+.contenedor-principal {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 34px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .contenedor-principal {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==================== SECCIONES Y TÍTULOS ==================== */
+.seccion {
+  margin-bottom: 50px;
+}
+
+.cabecera-seccion {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--color-borde);
+}
+
+.cabecera-seccion .titulo-seccion {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.titulo-seccion {
+  font-family: var(--fuente-titulos);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--color-principal-oscuro);
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--color-borde);
+  scroll-margin-top: 20px;
+}
+
+.estado-filtro {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--color-principal);
+}
+
+.texto-ayuda {
+  font-size: 0.94rem;
+  color: var(--color-texto-suave);
+  margin-bottom: 16px;
+}
+
+/* ==================== TARJETAS DEL BLOG ==================== */
+.tarjeta-tutorial {
+  background-color: var(--color-tarjeta);
+  border-radius: var(--radio-tarjeta);
+  overflow: hidden;
+  border: 1px solid var(--color-borde);
+  box-shadow: var(--sombra-suave);
+  margin-bottom: 28px;
+  transition: transform var(--transicion-suave), box-shadow var(--transicion-suave);
+}
+
+.tarjeta-tutorial:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-hover);
+}
+
+.tarjeta-tutorial-imagen {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  background-color: var(--color-fondo-imagen);
+}
+
+.tarjeta-tutorial-cuerpo {
+  padding: 24px;
+}
+
+.tarjeta-meta-superior {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.etiqueta {
+  display: inline-block;
+  background-color: var(--color-principal-suave);
+  color: var(--color-principal-oscuro);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.insignia-video {
+  display: inline-block;
+  background-color: var(--color-principal);
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 12px;
+  letter-spacing: 0.4px;
+}
+
+.tarjeta-tutorial-cuerpo h3 {
+  font-family: var(--fuente-titulos);
+  margin: 6px 0;
+  font-size: 1.32rem;
+  color: var(--color-texto);
+}
+
+.fecha-publicacion {
+  font-size: 0.84rem;
+  color: var(--color-texto-suave);
+  margin-bottom: 10px;
+}
+
+.tarjeta-tutorial-cuerpo p {
+  color: var(--color-texto-suave);
+}
+
+/* Botones reutilizables */
+.boton-primario {
+  display: inline-block;
+  margin-top: 16px;
+  background-color: var(--color-principal);
+  color: #ffffff;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: var(--radio-boton);
+  font-size: 0.92rem;
+  transition: background-color var(--transicion-suave), transform var(--transicion-suave);
+}
+
+.boton-primario:hover {
+  background-color: var(--color-principal-oscuro);
+  transform: translateY(-2px);
+}
+
+.boton-primario:active {
+  transform: translateY(0);
+}
+
+.boton-secundario {
+  display: inline-block;
+  margin-top: 14px;
+  background-color: var(--color-principal-suave);
+  color: var(--color-principal-oscuro);
+  border: 1px solid var(--color-borde);
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: var(--radio-boton);
+  font-size: 0.88rem;
+  transition: background-color var(--transicion-suave), color var(--transicion-suave);
+}
+
+.boton-secundario:hover {
+  background-color: var(--color-principal);
+  color: #ffffff;
+}
+
+/* ==================== SECCIÓN PATRONES ==================== */
+.grid-patrones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: 20px;
+}
+
+.tarjeta-patron {
+  background-color: var(--color-tarjeta);
+  border-radius: var(--radio-tarjeta);
+  padding: 22px;
+  border: 1px solid var(--color-borde);
+  border-top: 4px solid var(--color-principal);
+  box-shadow: var(--sombra-suave);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform var(--transicion-suave), box-shadow var(--transicion-suave);
+}
+
+.tarjeta-patron:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-hover);
+}
+
+.tarjeta-patron h3 {
+  font-family: var(--fuente-titulos);
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: var(--color-principal-oscuro);
+}
+
+.tarjeta-patron p {
+  font-size: 0.92rem;
+  color: var(--color-texto-suave);
+  margin-bottom: 10px;
+}
+
+.nivel-patron {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-principal);
+}
+
+/* ==================== TABLA INTERACTIVA DE PUNTOS ==================== */
+.tabla-scroll {
+  overflow-x: auto;
+  border-radius: var(--radio-tarjeta);
+  border: 1px solid var(--color-borde);
+  box-shadow: var(--sombra-suave);
+}
+
+.tabla-puntos {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-tarjeta);
+  font-size: 0.95rem;
+}
+
+.tabla-puntos th {
+  background-color: var(--color-principal);
+  color: #ffffff;
+  text-align: left;
+  padding: 14px 16px;
+  font-weight: 700;
+}
+
+.tabla-puntos td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.tabla-puntos tbody tr {
+  cursor: pointer;
+  transition: background-color var(--transicion-suave);
+}
+
+.tabla-puntos tbody tr:hover {
+  background-color: var(--color-acento-crema);
+}
+
+.tabla-puntos tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.enlace-accion-tabla {
+  color: var(--color-principal-oscuro);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ==================== LISTA INTERACTIVA DE MATERIALES ==================== */
+.lista-materiales {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.item-material {
+  background-color: var(--color-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: var(--sombra-suave);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: border-color var(--transicion-suave), transform var(--transicion-suave);
+}
+
+.item-material:hover {
+  border-color: var(--color-principal);
+  transform: translateX(4px);
+}
+
+.item-material-info strong {
+  display: block;
+  color: var(--color-principal-oscuro);
+  font-size: 1rem;
+}
+
+.item-material-info span {
+  font-size: 0.9rem;
+  color: var(--color-texto-suave);
+}
+
+.etiqueta-ver-detalle {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--color-principal);
+}
+
+/* ==================== BARRA LATERAL (SIDEBAR) ==================== */
+.widget {
+  background-color: var(--color-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-tarjeta);
+  padding: 22px;
+  margin-bottom: 24px;
+  box-shadow: var(--sombra-suave);
+}
+
+.widget h3 {
+  font-family: var(--fuente-titulos);
+  font-size: 1.12rem;
+  color: var(--color-principal-oscuro);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--color-borde);
+}
+
+.widget p {
+  font-size: 0.94rem;
+  color: var(--color-texto-suave);
+}
+
+.avatar-perfil {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 14px;
+  border: 3px solid var(--color-principal-suave);
+  background-color: var(--color-fondo-imagen);
+}
+
+/* Botones de filtro por etiqueta */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.boton-filtro-etiqueta {
+  background-color: var(--color-principal-suave);
+  color: var(--color-principal-oscuro);
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background-color var(--transicion-suave), color var(--transicion-suave);
+}
+
+.boton-filtro-etiqueta:hover {
+  border-color: var(--color-principal);
+}
+
+.boton-filtro-etiqueta.activa {
+  background-color: var(--color-principal);
+  color: #ffffff;
+}
+
+/* Lista de videos de YouTube en la sidebar */
+.lista-videos {
+  list-style: none;
+}
+
+.lista-videos li {
+  margin-bottom: 10px;
+}
+
+.lista-videos li:last-child {
+  margin-bottom: 0;
+}
+
+.lista-videos a {
+  color: var(--color-texto);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  display: block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background-color: var(--color-acento-crema);
+  border: 1px solid var(--color-borde);
+  transition: background-color var(--transicion-suave), color var(--transicion-suave), transform var(--transicion-suave);
+}
+
+.lista-videos a:hover {
+  background-color: var(--color-principal);
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+/* ==================== MODALES (TUTORIAL, PUNTO Y MATERIAL) ==================== */
+.modal-superposicion {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-fondo-modal);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px 16px;
+  overflow-y: auto;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal-superposicion:not([hidden]) {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-caja {
+  background-color: var(--color-tarjeta);
+  border-radius: var(--radio-tarjeta);
+  width: 100%;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.24);
+  overflow: hidden;
+  transform: translateY(16px);
+  transition: transform 0.28s ease;
+  margin: auto 0;
+}
+
+.modal-superposicion:not([hidden]) .modal-caja {
+  transform: translateY(0);
+}
+
+.modal-tutorial-caja {
+  max-width: 820px;
+}
+
+.modal-punto-caja {
+  max-width: 640px;
+}
+
+.modal-material-caja {
+  max-width: 540px;
+}
+
+.modal-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: var(--color-acento-crema);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.boton-volver,
+.boton-cerrar-x {
+  background-color: var(--color-principal);
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--radio-boton);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background-color var(--transicion-suave);
+}
+
+.boton-cerrar-x {
+  background-color: var(--color-principal-suave);
+  color: var(--color-principal-oscuro);
+}
+
+.boton-volver:hover,
+.boton-cerrar-x:hover {
+  background-color: var(--color-principal-oscuro);
+  color: #ffffff;
+}
+
+/* Contenido interno: Modal Tutorial */
+.modal-cuerpo-tutorial {
+  padding: 28px;
+}
+
+.modal-cuerpo-tutorial h2 {
+  font-family: var(--fuente-titulos);
+  font-size: 1.7rem;
+  color: var(--color-principal-oscuro);
+  margin: 10px 0 6px;
+}
+
+.modal-imagen-portada {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 16px 0 24px;
+  background-color: var(--color-fondo-imagen);
+}
+
+.bloque-video-tutorial {
+  margin-bottom: 26px;
+  padding: 18px;
+  background-color: var(--color-acento-crema);
+  border-radius: 12px;
+  border: 1px solid var(--color-borde);
+}
+
+.bloque-video-tutorial h3 {
+  font-family: var(--fuente-titulos);
+  font-size: 1.12rem;
+  color: var(--color-principal-oscuro);
+  margin-bottom: 12px;
+}
+
+.lista-pasos-tutorial {
+  list-style: none;
+  counter-reset: contador-pasos;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.item-paso-tutorial {
+  counter-increment: contador-pasos;
+  background-color: var(--color-fondo);
+  border-radius: 12px;
+  padding: 20px;
+  border-left: 4px solid var(--color-principal);
+}
+
+.paso-encabezado {
+  font-weight: 700;
+  color: var(--color-principal-oscuro);
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+}
+
+.paso-encabezado::before {
+  content: "Paso " counter(contador-pasos) " — ";
+}
+
+.item-paso-tutorial img {
+  width: 100%;
+  max-height: 290px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 14px;
+  background-color: var(--color-fondo-imagen);
+}
+
+/* Contenido interno: Modal Punto y Modal Material */
+.modal-cuerpo-punto,
+.modal-cuerpo-material {
+  padding: 26px;
+}
+
+.modal-cuerpo-punto h2,
+.modal-cuerpo-material h2 {
+  font-family: var(--fuente-titulos);
+  font-size: 1.55rem;
+  color: var(--color-principal-oscuro);
+  margin-bottom: 8px;
+}
+
+.punto-metadatos {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-principal);
+  margin-bottom: 12px;
+}
+
+.punto-descripcion,
+.material-detalle-texto {
+  color: var(--color-texto);
+  margin-bottom: 18px;
+  line-height: 1.7;
+}
+
+/* Contenedor responsivo 16:9 para el video de YouTube */
+.contenedor-video-responsivo {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #1c1619;
+}
+
+.contenedor-video-responsivo iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.enlace-directo-youtube {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-principal-oscuro);
+  text-decoration: underline;
+}
+
+/* ==================== PIE DE PÁGINA ==================== */
+.pie-pagina {
+  background-color: var(--color-principal-oscuro);
+  color: #ffffff;
+  text-align: center;
+  padding: 32px 20px;
+  font-size: 0.92rem;
+}
+
+.pie-pagina a {
+  color: var(--color-principal-suave);
+  font-weight: 600;
+}
