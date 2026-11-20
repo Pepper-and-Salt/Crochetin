@@ -1,28 +1,19 @@
 <!DOCTYPE html>
-<!-- ==========================================================================
-     ARCHIVO: index.html
-     DESCRIPCIÓN: Estructura semántica del blog de crochet para principiantes.
-     RELACIÓN: Enlaza styles.css para el diseño visual y carga data.js seguido
-     de script.js para poblar el contenido y gestionar las vistas interactivas.
-     ========================================================================== -->
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crochetin | Guía y Blog para Principiantes</title>
 
-  <!-- Tipografías editoriales desde Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Hoja de estilos principal -->
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-  <!-- ==================== ENCABEZADO Y NAVEGACIÓN ==================== -->
   <header id="inicio" class="encabezado-principal">
     <div class="encabezado-contenido">
       <span class="subtitulo-superior">Guia para tejer con ganchillo :D</span>
@@ -39,13 +30,10 @@
     </div>
   </header>
 
-  <!-- ==================== CONTENEDOR PRINCIPAL ==================== -->
   <div class="contenedor-principal">
 
-    <!-- ---------- COLUMNA DE CONTENIDO ---------- -->
     <main>
 
-      <!-- Sección: Tutoriales del Blog -->
       <section class="seccion" id="tutoriales">
         <div class="cabecera-seccion">
           <h2 class="titulo-seccion">Últimas entradas del blog</h2>
@@ -54,13 +42,10 @@
         <div id="contenedor-blog" class="lista-tutoriales"></div>
       </section>
 
-      <!-- Sección: Patrones con enlaces externos -->
       <section class="seccion" id="patrones">
         <h2 class="titulo-seccion">Patrones para empezar</h2>
         <div id="contenedor-patrones" class="grid-patrones"></div>
       </section>
-
-      <!-- Sección: Tabla interactiva de Puntos Básicos -->
       <section class="seccion" id="puntos">
         <h2 class="titulo-seccion">Puntos básicos de crochet</h2>
         <p class="texto-ayuda">Selecciona cualquier fila de la tabla para abrir su explicación detallada y video demostrativo.</p>
@@ -89,19 +74,15 @@
 
     </main>
 
-    <!-- ---------- BARRA LATERAL (SIDEBAR) ---------- -->
     <aside id="contenedor-sidebar" aria-label="Información adicional y filtros">
 
-      <!-- Widget: Sobre mí -->
       <section class="widget" id="widget-sobre-mi"></section>
 
-      <!-- Widget: Filtro por categorías -->
       <section class="widget">
         <h3>Filtrar tutoriales</h3>
         <div id="contenedor-etiquetas" class="tags" role="group" aria-label="Filtrar artículos por categoría"></div>
       </section>
 
-      <!-- Widget: Videos recomendados en YouTube -->
       <section class="widget">
         <h3>Tutoriales en YouTube</h3>
         <ul id="lista-videos-sidebar" class="lista-videos"></ul>
@@ -111,13 +92,11 @@
 
   </div>
 
-  <!-- ==================== PIE DE PÁGINA ==================== -->
   <footer class="pie-pagina">
     <p>© <span id="anio-actual"></span> Crochetin — Todos los derechos reservados</p>
     <p><a href="#inicio">Volver arriba</a></p>
   </footer>
 
-  <!-- ==================== MODAL 1: DETALLE DE TUTORIAL ==================== -->
   <div id="modal-detalle-tutorial" class="modal-superposicion" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-tutorial" hidden>
     <div class="modal-caja modal-tutorial-caja">
       <div class="modal-cabecera">
@@ -128,7 +107,6 @@
     </div>
   </div>
 
-  <!-- ==================== MODAL 2: DETALLE DE PUNTO Y VIDEO ==================== -->
   <div id="modal-detalle-punto" class="modal-superposicion" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-punto" hidden>
     <div class="modal-caja modal-punto-caja">
       <div class="modal-cabecera">
@@ -139,7 +117,6 @@
     </div>
   </div>
 
-  <!-- ==================== MODAL 3: GUÍA DE MATERIAL ==================== -->
   <div id="modal-detalle-material" class="modal-superposicion" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-material" hidden>
     <div class="modal-caja modal-material-caja">
       <div class="modal-cabecera">
@@ -150,7 +127,6 @@
     </div>
   </div>
 
-  <!-- Scripts en orden estricto: primero datos, después comportamiento -->
   <script src="data.js"></script>
   <script src="script.js"></script>
 
