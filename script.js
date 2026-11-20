@@ -1,15 +1,7 @@
-/* ==========================================================================
-   ARCHIVO: script.js
-   DESCRIPCIÓN: Lógica interactiva del blog de crochet.
-   RELACIÓN: Lee el objeto global DATOS definido en data.js, dibuja cada
-   sección en index.html, gestiona el filtro por etiquetas y controla los
-   tres modales (tutorial completo, video de punto y guía de material).
-   ========================================================================== */
 
 (function () {
   "use strict";
 
-  /* ==================== CONSTANTES Y ESTADO ==================== */
   const URL_BASE_YOUTUBE_EMBED = "https://www.youtube-nocookie.com/embed/";
   const URL_BASE_YOUTUBE_VER = "https://www.youtube.com/watch?v=";
   const ETIQUETA_TODAS = "Todas";
@@ -17,15 +9,6 @@
   let etiquetaSeleccionada = ETIQUETA_TODAS;
   let elementoEnfocadoAntesDelModal = null;
 
-  /* ==================== FUNCIONES AUXILIARES ==================== */
-
-  /**
-   * Crea un elemento HTML con clases y texto opcionales para evitar duplicación.
-   * @param {string} etiqueta - Etiqueta HTML a crear.
-   * @param {string} [claseCss] - Clases CSS separadas por espacios.
-   * @param {string} [texto] - Contenido de texto seguro.
-   * @returns {HTMLElement} Elemento DOM configurado.
-   */
   function crearElemento(etiqueta, claseCss, texto) {
     const elemento = document.createElement(etiqueta);
     if (claseCss) {
@@ -37,12 +20,6 @@
     return elemento;
   }
 
-  /**
-   * Crea un reproductor responsivo de YouTube bajo demanda junto con su enlace directo.
-   * @param {string} videoId - Identificador único del video en YouTube.
-   * @param {string} tituloAccesible - Título descriptivo para el atributo title del iframe.
-   * @returns {HTMLDivElement} Contenedor con el iframe y enlace externo.
-   */
   function crearReproductorYouTube(videoId, tituloAccesible) {
     const envoltura = document.createElement("div");
 
@@ -65,13 +42,6 @@
     return envoltura;
   }
 
-  /**
-   * Crea el bloque visual de un paso individual dentro del modal de tutorial.
-   * @param {Object} paso - Objeto con { texto, imagen }.
-   * @param {number} indice - Posición del paso en la lista.
-   * @param {string} tituloTutorial - Título del tutorial para el atributo alt.
-   * @returns {HTMLLIElement} Elemento de lista configurado.
-   */
   function crearElementoPaso(paso, indice, tituloTutorial) {
     const itemPaso = crearElemento("li", "item-paso-tutorial");
 
@@ -92,11 +62,6 @@
     return itemPaso;
   }
 
-  /* ==================== RENDERIZADO DE SECCIONES ==================== */
-
-  /**
-   * Dibuja las tarjetas de tutoriales filtradas según la etiqueta activa.
-   */
   function renderizarTarjetasDeBlog() {
     const contenedorBlog = document.getElementById("contenedor-blog");
     const estadoFiltro = document.getElementById("estado-filtro-blog");
@@ -172,9 +137,6 @@
     });
   }
 
-  /**
-   * Dibuja las tarjetas de patrones con enlaces externos opcionales.
-   */
   function renderizarPatrones() {
     const contenedorPatrones = document.getElementById("contenedor-patrones");
     if (!contenedorPatrones || !Array.isArray(DATOS.patrones)) {
@@ -209,9 +171,6 @@
     });
   }
 
-  /**
-   * Dibuja las filas interactivas de la tabla de puntos básicos.
-   */
   function renderizarTablaDePuntos() {
     const cuerpoTabla = document.getElementById("cuerpo-tabla-puntos");
     if (!cuerpoTabla || !Array.isArray(DATOS.puntos)) {
@@ -251,9 +210,6 @@
     });
   }
 
-  /**
-   * Dibuja la lista interactiva de materiales esenciales.
-   */
   function renderizarMateriales() {
     const listaMateriales = document.getElementById("lista-materiales");
     if (!listaMateriales || !Array.isArray(DATOS.materiales)) {
@@ -294,9 +250,6 @@
     });
   }
 
-  /**
-   * Dibuja los widgets de la barra lateral: Sobre mí, Filtros por etiqueta y Videos.
-   */
   function renderizarSidebar() {
     const widgetSobreMi = document.getElementById("widget-sobre-mi");
     const listaVideos = document.getElementById("lista-videos-sidebar");
@@ -349,23 +302,12 @@
       });
     }
   }
-
-  /**
-   * Actualiza la categoría activa y vuelve a dibujar los artículos del blog.
-   * @param {string} nuevaEtiqueta - Nombre de la etiqueta seleccionada.
-   */
   function filtrarTutorialesPorEtiqueta(nuevaEtiqueta) {
     etiquetaSeleccionada = nuevaEtiqueta;
     renderizarSidebar();
     renderizarTarjetasDeBlog();
   }
 
-  /* ==================== GESTIÓN DE MODALES ==================== */
-
-  /**
-   * Abre el modal con el tutorial completo, pasos numerados y video opcional.
-   * @param {number} id - Identificador único del tutorial en DATOS.tutoriales.
-   */
   function abrirDetalleDeTutorial(id) {
     const tutorialActual = DATOS.tutoriales.find(function (item) {
       return item.id === id;
@@ -396,7 +338,6 @@
     contenidoModal.appendChild(fecha);
     contenidoModal.appendChild(imagenPrincipal);
 
-    /* Si el tutorial tiene un videoId configurado, lo insertamos bajo demanda */
     if (tutorialActual.videoId && tutorialActual.videoId.trim() !== "") {
       const bloqueVideo = crearElemento("div", "bloque-video-tutorial");
       const subtituloVideo = crearElemento("h3", "", "Video guía de este tutorial");
@@ -420,10 +361,6 @@
     mostrarModal(modalDetalleTutorial);
   }
 
-  /**
-   * Abre el modal con la ficha del punto básico y su video embebido de YouTube.
-   * @param {string} nombre - Nombre exacto del punto en DATOS.puntos.
-   */
   function abrirDetalleDePunto(nombre) {
     const puntoActual = DATOS.puntos.find(function (item) {
       return item.nombre === nombre;
@@ -460,11 +397,6 @@
 
     mostrarModal(modalDetallePunto);
   }
-
-  /**
-   * Abre el modal con recomendaciones prácticas sobre un material específico.
-   * @param {number} indice - Posición del material en DATOS.materiales.
-   */
   function abrirDetalleDeMaterial(indice) {
     const materialActual = DATOS.materiales[indice];
     const modalDetalleMaterial = document.getElementById("modal-detalle-material");
@@ -488,11 +420,6 @@
 
     mostrarModal(modalDetalleMaterial);
   }
-
-  /**
-   * Muestra un modal específico y traslada el foco de teclado a su interior.
-   * @param {HTMLElement} elementoModal - Contenedor del modal a desplegar.
-   */
   function mostrarModal(elementoModal) {
     elementoEnfocadoAntesDelModal = document.activeElement;
     elementoModal.hidden = false;
@@ -504,16 +431,11 @@
     }
   }
 
-  /**
-   * Cierra todos los modales abiertos, detiene los videos activos y restaura el foco.
-   */
   function cerrarModal() {
     const modales = document.querySelectorAll(".modal-superposicion");
     modales.forEach(function (modal) {
       modal.hidden = true;
     });
-
-    /* Limpiamos los contenedores con video para detener la reproducción al cerrar */
     const idsContenedoresConVideo = ["contenido-modal-tutorial", "contenido-modal-punto"];
     idsContenedoresConVideo.forEach(function (idContenedor) {
       const contenedor = document.getElementById(idContenedor);
@@ -529,9 +451,6 @@
     }
   }
 
-  /**
-   * Registra los eventos de cierre por botón, clic fuera de la caja o tecla Escape.
-   */
   function configurarEventosDeCierre() {
     const botonesCerrar = document.querySelectorAll("[data-cerrar-modal]");
     botonesCerrar.forEach(function (boton) {
@@ -554,7 +473,6 @@
     });
   }
 
-  /* ==================== INICIALIZACIÓN ==================== */
 
   document.addEventListener("DOMContentLoaded", function () {
     const elementoAnio = document.getElementById("anio-actual");
