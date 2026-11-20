@@ -1,17 +1,7 @@
-/* ==========================================================================
-   ARCHIVO: data.js
-   DESCRIPCIÓN: Base de datos centralizada del blog de crochet.
-   RELACIÓN: Se carga antes que script.js en index.html. Todo el texto,
-   imágenes, videos y enlaces se editan exclusivamente aquí.
-   ========================================================================== */
+
 
 const DATOS = {
-  /* ========================================================================
-     1. TUTORIALES DEL BLOG
-     - Si "videoId" está vacío (""), el tutorial muestra solo pasos e imágenes.
-     - Si "videoId" tiene un código de YouTube (ej. "aAxGTnVNJiE"), muestra
-       el video embebido dentro de la vista de detalle del tutorial.
-     ======================================================================== */
+
   tutoriales: [
     {
       id: 1,
@@ -63,11 +53,6 @@ const DATOS = {
     }
   ],
 
-  /* ========================================================================
-     2. PUNTOS BÁSICOS (TABLA INTERACTIVA CON VIDEO)
-     - Pega en "videoId" únicamente el código que aparece después de "v=" en
-       el enlace de YouTube.
-     ======================================================================== */
   puntos: [
     {
       nombre: "Punto cadena",
@@ -103,11 +88,7 @@ const DATOS = {
     }
   ],
 
-  /* ========================================================================
-     3. PATRONES PARA EMPEZAR (CON ENLACE EXTERNO OPCIONAL)
-     - Si agregas una dirección en "url", aparecerá un botón en la tarjeta
-       para abrir ese patrón en otra página. Si la dejas vacía (""), se oculta.
-     ======================================================================== */
+
   patrones: [
     {
       titulo: "Bufanda básica en punto bajo",
@@ -132,9 +113,6 @@ const DATOS = {
     }
   ],
 
-  /* ========================================================================
-     4. MATERIALES ESENCIALES (CON VISTA DE DETALLE AL HACER CLIC)
-     ======================================================================== */
   materiales: [
     {
       nombre: "Hilo de algodón peinado",
@@ -167,10 +145,6 @@ const DATOS = {
         "Coloca un marcador en el primer punto de cada hilera o vuelta en espiral. Así sabrás exactamente dónde cerrar y tus tejidos mantendrán sus medidas."
     }
   ],
-
-  /* ========================================================================
-     5. BARRA LATERAL (SIDEBAR)
-     ======================================================================== */
   sobreMi: {
     titulo: "Sobre este espacio",
     foto: "imagenes/uwu.jpg",
